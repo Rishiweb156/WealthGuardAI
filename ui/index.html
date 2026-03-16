@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthGuard AI - Predictive Financial Platform</title>
+    <link rel="stylesheet" href="/static/css/enhanced-styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>💎 WealthGuard AI</h1>
+            <p class="version">v2.0 · Predictive</p>
+        </div>
+        
+        <div class="profile">
+            <div class="profile-pic">👤</div>
+            <div class="profile-info">
+                <h2>Financial Dashboard</h2>
+                <p class="premium-badge">⭐ AI-Powered</p>
+            </div>
+        </div>
+        
+        <p class="menu-title">MAIN MENU</p>
+        <ul class="nav-menu">
+            <li class="active" data-tab="dashboard">
+                <span class="icon">📊</span> Dashboard
+            </li>
+            <li data-tab="transactions">
+                <span class="icon">💳</span> Transactions
+            </li>
+            <li data-tab="graph-insights">
+                <span class="icon">🕸️</span> Graph RAG
+            </li>
+            <li data-tab="forecast">
+                <span class="icon">🔮</span> Predictions
+            </li>
+            <li data-tab="ai-chat">
+                <span class="icon">🤖</span> AI Assistant
+            </li>
+        </ul>
+        
+        <div class="ai-status">
+            <h3>🧠 AI Features Active</h3>
+            <div class="feature-badge">Graph RAG</div>
+            <div class="feature-badge">Time-Series ML</div>
+            <div class="feature-badge">LLM Agent</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h2 id="page-title">Financial Dashboard</h2>
+            <div class="actions">
+                <button class="btn-primary" id="upload-btn">📤 Upload Statements</button>
+                <button class="btn-secondary" id="refresh-btn">🔄 Refresh</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard">
+            <div class="metrics-grid">
+                <div class="metric-card balance">
+                    <div class="metric-header">
+                        <span class="icon">💰</span>
+                        <span class="label">Total Balance</span>
+                    </div>
+                    <div class="metric-value" id="total-balance">₹0.00</div>
+                    <div class="metric-change positive" id="balance-change">+0%</div>
+                </div>
+                
+                <div class="metric-card income">
+                    <div class="metric-header">
+                        <span class="icon">📈</span>
+                        <span class="label">Monthly Income</span>
+                    </div>
+                    <div class="metric-value" id="monthly-income">₹0.00</div>
+                    <div class="metric-change" id="income-change">+0%</div>
+                </div>
+                
+                <div class="metric-card expense">
+                    <div class="metric-header">
+                        <span class="icon">📉</span>
+                        <span class="label">Monthly Expense</span>
+                    </div>
+                    <div class="metric-value" id="monthly-expense">₹0.00</div>
+                    <div class="metric-change" id="expense-change">+0%</div>
+                </div>
+                
+                <div class="metric-card forecast">
+                    <div class="metric-header">
+                        <span class="icon">🔮</span>
+                        <span class="label">30-Day Forecast</span>
+                    </div>
+                    <div class="metric-value" id="forecast-value">₹0.00</div>
+                    <div class="metric-trend" id="forecast-trend">Calculating...</div>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart-card">
+                    <h3>📊 Spending Trends</h3>
+                    <canvas id="spending-chart"></canvas>
+                </div>
+                
+                <div class="chart-card">
+                    <h3>🥧 Expense Breakdown</h3>
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3>💡 AI Insights</h3>
+                <div id="insights-container" class="insights-grid"></div>
+            </div>
+        </div>
+
+        <!-- Transactions Tab -->
+        <div class="tab-content" id="transactions">
+            <div class="search-bar">
+                <input type="text" id="search-transactions" placeholder="🔍 Search transactions..." aria-label="Search transactions">
+                <label for="filter-category" class="visually-hidden">Filter by category</label>
+                <select id="filter-category" aria-label="Filter by category" title="Filter transactions by category">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+            <div id="transactions-list" class="transactions-list"></div>
+        </div>
+
+        <!-- Graph RAG Tab -->
+        <div class="tab-content" id="graph-insights">
+            <div class="feature-hero">
+                <h2>🕸️ Graph RAG Analysis</h2>
+                <p>Discover hidden relationships in your spending patterns using knowledge graphs</p>
+                <button class="btn-primary btn-large" id="run-graph-analysis">Analyze Spending Graph</button>
+            </div>
+            
+            <div id="graph-results" class="graph-results hidden">
+                <div class="result-section">
+                    <h3>🎯 Top Spending Sources</h3>
+                    <div id="top-merchants"></div>
+                </div>
+                
+                <div class="result-section">
+                    <h3>🔗 Spending Clusters</h3>
+                    <div id="spending-clusters"></div>
+                </div>
+                
+                <div class="result-section full-width">
+                    <h3>📊 Interactive Graph Visualization</h3>
+                    <div id="graph-viz" class="graph-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Tab -->
+        <div class="tab-content" id="forecast">
+            <div class="feature-hero">
+                <h2>🔮 Predictive Forecasting</h2>
+                <p>ML-powered 30-day balance prediction with confidence intervals</p>
+                <button class="btn-primary btn-large" id="run-forecast">Generate Forecast</button>
+            </div>
+            
+            <div id="forecast-results" class="forecast-results hidden">
+                <div class="forecast-summary">
+                    <div class="forecast-card">
+                        <h4>Current Balance</h4>
+                        <div class="big-number" id="current-balance">₹0</div>
+                    </div>
+                    <div class="forecast-card">
+                        <h4>30-Day Prediction</h4>
+                        <div class="big-number" id="predicted-balance">₹0</div>
+                    </div>
+                    <div class="forecast-card alert" id="alert-card">
+                        <h4>⚠️ Alert</h4>
+                        <p id="alert-message">No alerts</p>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3>📈 Balance Forecast Timeline</h3>
+                    <canvas id="forecast-chart"></canvas>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>💡 AI Recommendations</h3>
+                    <div id="recommendations-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Chat Tab -->
+        <div class="tab-content" id="ai-chat">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h3>🤖 Financial AI Assistant</h3>
+                    <p>Ask me anything about your finances</p>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <div class="ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Hello! I'm your AI financial advisor. Upload your bank statements and ask me questions like:</p>
+                            <ul>
+                                <li>"What are my top expenses this month?"</li>
+                                <li>"When did I last spend on shopping?"</li>
+                                <li>"Show me my recurring payments"</li>
+                                <li>"Analyze my spending trends"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <textarea id="chat-input" placeholder="Type your question..." rows="2"></textarea>
+                    <button id="send-chat" class="btn-primary">Send →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="upload-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📤 Upload Bank Statements</h2>
+                <button class="close-btn" id="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" id="drop-zone">
+                    <p class="drop-text">🎯 Drag & Drop PDF files here</p>
+                    <p class="or-text">or</p>
+                    <button class="btn-primary" id="browse-files">Browse Files</button>
+                    <input type="file" id="file-input" multiple accept=".pdf" hidden>
+                </div>
+                <p class="file-info">Supports HDFC Bank PDFs (max 10 files)</p>
+                <div id="file-list" class="file-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancel-upload">Cancel</button>
+                <button class="btn-primary" id="submit-upload">Upload & Process</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading">
+        <div class="spinner"></div>
+        <p id="loading-text">Processing...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="/static/js/enhanced-app.js"></script>
+</body>
+</html>
