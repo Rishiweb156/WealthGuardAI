@@ -222,8 +222,8 @@ GET  /health                  - System health check
 ## Contact
 
 **Project Maintainer**: [Dadi Rishitha]
-- GitHub: [@yourusername](https://github.com/Rishiweb156)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/dadi-rishitha-867404283/)
+- GitHub: [@mygithub](https://github.com/Rishiweb156)
+- LinkedIn: [myLinkedIn](https://www.linkedin.com/in/dadi-rishitha-867404283/)
 - Email:142201005@smail.iitpkd.ac.in
 
 ---
